@@ -6,6 +6,7 @@ import com.metaphorce.inventorymanager.views.UpdateUserView;
 import com.metaphorce.inventorymanager.model.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.DefaultListModel;
 
 public class UserCRUDController implements ActionListener{
     
@@ -16,13 +17,13 @@ public class UserCRUDController implements ActionListener{
     public UserCRUDController(UserServiceImpl userService, CreateUserView createUserView) {
         this.userService = userService;
         this.createUserView = createUserView;
-        initView();
+        initCreateView();
     }
     
     public UserCRUDController(UserServiceImpl userService, UpdateUserView updateUserView) {
         this.userService = userService;
         this.updateUserView = updateUserView;
-        initView();
+        initUpdateView();
     }
     
    
@@ -39,22 +40,34 @@ public class UserCRUDController implements ActionListener{
             }
         }
         if(e.getSource() == this.updateUserView.updateBtn){
-           //alavberga nose hacer esto
-           //User selectedUser = userService.searchUserByName(this.updateUserView.usersList.getSelectedValue());
+            User selectedUser = (User)this.updateUserView.usersList.getSelectedValue();
+            System.out.println("User to edit:" + selectedUser.getName());
+            this.updateUserView.usernameField.setText(selectedUser.getName());
+            this.updateUserView.passwordField.setText(selectedUser.getPassword());
+            
             String username = this.updateUserView.usernameField.getText();
             String password = this.updateUserView.passwordField.getText();
             try{
                 userService.updateUser(0, username, password);
-                this.createUserView.successLabel.setVisible(true);
             }catch(Exception ex){
                 ex.printStackTrace();
             }   
         }
     }
     
-    public void initView(){
+    public void initCreateView(){
         this.createUserView.successLabel.setVisible(false);
         this.createUserView.createBtn.addActionListener(this);
     }
+    public void initUpdateView(){
+        //What Ill do is to change what JList at UpdateUserView receives, so that instead of receiving a User itll receive a String of the name and password
+        DefaultListModel users = userService.getAllUsers();
+        for(int i = 0; i < users.getSize(); i++){
+            users.getElementAt(i);
+        }
+        this.updateUserView.usersList.setModel(users);
+        this.updateUserView.updateBtn.addActionListener(this);
+    }
+    
     
 }

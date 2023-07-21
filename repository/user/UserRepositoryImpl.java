@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -103,22 +104,22 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public ResultSet getAllUsers() {
+    public ArrayList getAllUsers() {
         String query = "SELECT * FROM users";
         ResultSet result = null;
+        ArrayList<User> users = new ArrayList<>();
         try {
-
             Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
             PreparedStatement statement = connection.prepareStatement(query);
 
             result = statement.executeQuery();
-            System.out.println(result);
             while (result.next()) {
                 int id = result.getInt("id");
                 String name = result.getString("name");
                 String password = result.getString("password");
-                System.out.println("ID: " + id + ", Name: " + name + ", password: " + password);
-            }
+                User user = new User(id, name, password);
+                users.add(user);
+        }
 
             result.close();
             statement.close();
@@ -127,7 +128,7 @@ public class UserRepositoryImpl implements UserRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return result;
+        return users;
     }
 
     @Override

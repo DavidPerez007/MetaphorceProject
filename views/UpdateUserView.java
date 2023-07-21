@@ -1,31 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.metaphorce.inventorymanager.views;
 
 import com.metaphorce.inventorymanager.service.user.UserServiceImpl;
-import java.awt.List;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
-/**
- *
- * @author david
- */
 public class UpdateUserView extends javax.swing.JFrame {
-    private DefaultListModel users;
-    /**
-     * Creates new form UpdateUserView
-     */
-    public UpdateUserView(DefaultListModel users) {
-        this.users = users;
+    UserServiceImpl userService = new UserServiceImpl();
+    public UpdateUserView() {
         initComponents();
+        /*DefaultListModel users = userService.getAllUsers();
+        System.out.print(users.isEmpty());
+        this.usersList.setModel(users);
+        */
+        
     }
-
-    private UpdateUserView() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
+   
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +34,7 @@ public class UpdateUserView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        usersList = new javax.swing.JList<ListModel>(users);
+        usersList = new javax.swing.JList<>();
         updateBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);

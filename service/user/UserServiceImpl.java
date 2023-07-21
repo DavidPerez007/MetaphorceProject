@@ -3,6 +3,7 @@ import com.metaphorce.inventorymanager.model.User;
 import com.metaphorce.inventorymanager.repository.user.UserRepositoryImpl;
 import com.metaphorce.inventorymanager.service.security.Authenticator;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
@@ -52,13 +53,9 @@ public class UserServiceImpl implements UserService{
     public DefaultListModel<User> getAllUsers() {
         DefaultListModel users = new DefaultListModel();
         try{
-            ResultSet resultSet = userRepository.getAllUsers();
-            while(resultSet.next()){
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                String password = resultSet.getString("password");
-                User user = new User(id, name, password);
-                users.addElement(user);
+            ArrayList usersList = userRepository.getAllUsers();
+            for(int i = 0; i < usersList.size(); i++){
+                users.addElement(usersList.get(i));
             }
         }catch(Exception e){
             e.printStackTrace();

@@ -2,6 +2,7 @@ package com.metaphorce.inventorymanager.controllers;
 
 import com.metaphorce.inventorymanager.service.user.UserServiceImpl;
 import com.metaphorce.inventorymanager.views.CreateUserView;
+import com.metaphorce.inventorymanager.views.UpdateUserView;
 import com.metaphorce.inventorymanager.views.UserManagementView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +29,9 @@ public class UserManagementController implements ActionListener{
             
         }
         if(e.getSource() ==  this.crudView.updateBtn){
-            
+            UpdateUserView updateView = new UpdateUserView();
+            UserCRUDController updateController = new UserCRUDController(userService, updateView);
+            updateView.setVisible(true);
         }
     }
     
