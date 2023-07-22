@@ -164,7 +164,6 @@ public class UserRepositoryImpl implements UserRepository {
 
             if (rowsAffected == 1) {
                 System.out.println("User deleted successfully.");
-                System.out.println("User deleted: " + userToDelete.getId() + " " + userToDelete.getName() + " " + userToDelete.getPassword());
             } else {
                 System.out.println("Failed to delete user.");
             }

@@ -2,6 +2,7 @@ package com.metaphorce.inventorymanager.controllers;
 
 import com.metaphorce.inventorymanager.service.user.UserServiceImpl;
 import com.metaphorce.inventorymanager.views.CreateUserView;
+import com.metaphorce.inventorymanager.views.DeleteUserView;
 import com.metaphorce.inventorymanager.views.UpdateUserView;
 import com.metaphorce.inventorymanager.views.UserManagementView;
 import java.awt.event.ActionEvent;
@@ -16,22 +17,24 @@ public class UserManagementController implements ActionListener{
         this.crudView.createBtn.addActionListener(this);
         this.crudView.deleteBtn.addActionListener(this);
         this.crudView.updateBtn.addActionListener(this);
-        this.crudView.findBtn.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.crudView.createBtn){
             CreateUserView createView = new CreateUserView();
-            createView.successLabel.setVisible(false);
-            UserCRUDController createController = new UserCRUDController(userService, createView);
+            UserCreateController createController = new UserCreateController(userService, createView);
             createView.setVisible(true);
-            
         }
         if(e.getSource() ==  this.crudView.updateBtn){
             UpdateUserView updateView = new UpdateUserView();
-            UserCRUDController updateController = new UserCRUDController(userService, updateView);
+            UserUpdateController updateController = new UserUpdateController(userService, updateView);
             updateView.setVisible(true);
+        }
+        if(e.getSource() ==  this.crudView.deleteBtn){
+            DeleteUserView deleteView = new DeleteUserView();
+            UserDeleteController deleteController = new UserDeleteController(userService, deleteView);
+            deleteView.setVisible(true);
         }
     }
     

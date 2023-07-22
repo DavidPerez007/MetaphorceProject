@@ -50,16 +50,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public DefaultListModel<User> getAllUsers() {
-        DefaultListModel users = new DefaultListModel();
-        try{
-            ArrayList usersList = userRepository.getAllUsers();
-            for(int i = 0; i < usersList.size(); i++){
-                users.addElement(usersList.get(i));
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+    public ArrayList<User> getAllUsers() {
+        ArrayList users = this.userRepository.getAllUsers();
         return users;
     }
     

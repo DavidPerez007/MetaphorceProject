@@ -3,8 +3,6 @@ package com.metaphorce.inventorymanager;
 import com.metaphorce.inventorymanager.controllers.LogInController;
 import com.metaphorce.inventorymanager.service.user.UserServiceImpl;
 import com.metaphorce.inventorymanager.views.LogInView;
-import java.util.ArrayList;
-import javax.swing.DefaultListModel;
 
 public class InventoryManager {
 
