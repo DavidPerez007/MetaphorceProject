@@ -1,11 +1,7 @@
 package com.metaphorce.inventorymanager.service.user;
 import com.metaphorce.inventorymanager.model.User;
 import com.metaphorce.inventorymanager.repository.user.UserRepositoryImpl;
-import com.metaphorce.inventorymanager.service.security.Authenticator;
-import java.sql.ResultSet;
 import java.util.ArrayList;
-import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
 
 public class UserServiceImpl implements UserService{
     private UserRepositoryImpl userRepository = new UserRepositoryImpl();

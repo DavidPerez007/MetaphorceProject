@@ -7,12 +7,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class IngredientRepositoryImpl implements IngredientRepository{
+public class InventoryRepositoryImpl implements InventoryRepository {
+
     private final String dbUrl = "jdbc:postgresql://localhost:5432/db_gorditasSA";
     private final String dbUser = "postgres";
     private final String dbPassword = "admin";
-    
+
     @Override
     public Ingredient getIngredientByName(String name) {
         Connection connection = null;
@@ -99,5 +101,50 @@ public class IngredientRepositoryImpl implements IngredientRepository{
             e.printStackTrace();
         }
     }
-    
+
+    @Override
+    public void createIngredient(Ingredient ingredient) {
+        String query = "INSERT INTO ingredients (ingredient, quantity) VALUES (?, ?)";
+        try (Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword); PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, ingredient.getIngredientName());
+            statement.setInt(2, ingredient.getIngredientQuantity());
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected == 1) {
+                System.out.println("Ingredient saved successfully.");
+            } else {
+                System.out.println("Failed to save ingredient.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList getAllIngredients() {
+        String query = "SELECT * FROM ingredients";
+        ResultSet result = null;
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            result = statement.executeQuery();
+            while (result.next()) {
+                String ingrName = result.getString("ingredient");
+                int quantity = result.getInt("quantity");
+                Ingredient ingredient = new Ingredient(ingrName, quantity);
+                ingredients.add(ingredient);
+            }
+
+            result.close();
+            statement.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ingredients;
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.metaphorce.inventorymanager.controllers;
 
+import com.metaphorce.inventorymanager.service.ingredient.InventoryServiceImpl;
 import com.metaphorce.inventorymanager.service.security.Authenticator;
 import java.awt.event.ActionListener;
 import com.metaphorce.inventorymanager.service.user.UserServiceImpl;
@@ -27,11 +28,10 @@ public class LogInController implements ActionListener{
             Authenticator auth = new Authenticator(userService); 
             boolean isAuthenticated = auth.authenticate(username, password);
             if(isAuthenticated){    
+                InventoryServiceImpl inventoryService = new InventoryServiceImpl();
                 InventoryView mainView = new InventoryView();
-                InventoryViewController inventoryViewController = new InventoryViewController(mainView);
+                InventoryViewController inventoryViewController = new InventoryViewController(inventoryService, mainView);
                 mainView.setVisible(true);
-                
-                
             }
         }
         if(click.getSource() == this.logInView.manageUsersBtn){

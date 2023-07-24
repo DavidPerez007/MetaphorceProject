@@ -9,7 +9,6 @@ public class Ingredient {
         setQuantity(quantity);
     }
     
-    public Ingredient(){}
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;

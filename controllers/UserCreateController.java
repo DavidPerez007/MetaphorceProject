@@ -15,6 +15,7 @@ public class UserCreateController implements ActionListener{
     
     public UserCreateController(UserServiceImpl userService, CreateUserView createUserView) {
         this.createUserView = createUserView;
+        this.userService = userService;
         initCreateView();
     }
     
