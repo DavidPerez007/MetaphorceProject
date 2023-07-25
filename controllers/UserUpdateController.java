@@ -4,6 +4,7 @@ import com.metaphorce.inventorymanager.model.User;
 import com.metaphorce.inventorymanager.service.user.UserServiceImpl;
 import com.metaphorce.inventorymanager.views.LogInView;
 import com.metaphorce.inventorymanager.views.UpdateUserView;
+import com.metaphorce.inventorymanager.views.UserManagementView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class UserUpdateController implements ActionListener {
                 selectedUser = usersList.get(selectedIndex);
                 this.updateUserView.usernameField.setText(selectedUser.getName());
                 this.updateUserView.passwordField.setText(selectedUser.getPassword());
+                this.updateUserView.isAdminCheckbox.setSelected(selectedUser.isAdmin());
             }
         }
 
@@ -40,16 +42,16 @@ public class UserUpdateController implements ActionListener {
                 String newPassword = this.updateUserView.passwordField.getText();
                 boolean isAdmin = this.updateUserView.isAdminCheckbox.isSelected();
                 userService.updateUser(selectedUser.getId(), newName, newPassword, isAdmin);
-                System.out.println("User updated successfully");
+                this.updateUserView.succesfulLabel.setVisible(true);
             } else {
                 this.updateUserView.errorLabel.setVisible(true);
             }
         }
         if(e.getSource() == this.updateUserView.backBtn){
-            LogInView logInView = new LogInView();
-            LogInController logInController = new LogInController(this.userService, logInView);
-            this.updateUserView.setVisible(false);
-            logInView.dispose();
+            UserManagementView userManagementView = new UserManagementView();
+            UserManagementController userController = new UserManagementController(this.userService, userManagementView);
+            this.updateUserView.dispose();
+            userManagementView.setVisible(true);
         }
     }
 
@@ -65,6 +67,7 @@ public class UserUpdateController implements ActionListener {
         this.updateUserView.selectBtn.addActionListener(this);
         this.updateUserView.backBtn.addActionListener(this);
         this.updateUserView.errorLabel.setVisible(false);
+        this.updateUserView.succesfulLabel.setVisible(false);
         this.updateUserView.setLocationRelativeTo(null);
     }
 }

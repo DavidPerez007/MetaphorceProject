@@ -185,12 +185,13 @@ public class UserRepositoryImpl implements UserRepository {
         User userToUpdate = getUserByID(id);
 
         if (userToUpdate != null) {
-            String query = "UPDATE users SET name = ?, password = ? WHERE id = ?";
+            String query = "UPDATE users SET name = ?, password = ?, is_admin = ? WHERE id = ?";
 
             try (Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword); PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, user.getName());
                 statement.setString(2, user.getPassword());
-                statement.setInt(3, id);
+                statement.setBoolean(3, (boolean)user.isAdmin());
+                statement.setInt(4, id);
 
                 int rowsUpdated = statement.executeUpdate();
 

@@ -40,9 +40,11 @@ public class UpdateUserView extends javax.swing.JFrame {
         errorLabel = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         isAdminCheckbox = new javax.swing.JCheckBox();
+        succesfulLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Update User");
 
         jLabel2.setText("Username");
@@ -61,6 +63,9 @@ public class UpdateUserView extends javax.swing.JFrame {
         backBtn.setText("Back");
 
         isAdminCheckbox.setText("Administrator");
+
+        succesfulLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        succesfulLabel.setText("User updated succesfully");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,9 +101,14 @@ public class UpdateUserView extends javax.swing.JFrame {
                     .addComponent(selectBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(updateBtn)
-                    .addComponent(isAdminCheckbox))
-                .addGap(51, 51, 51))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(updateBtn)
+                            .addComponent(isAdminCheckbox))
+                        .addGap(51, 51, 51))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(succesfulLabel)
+                        .addGap(39, 39, 39))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +135,9 @@ public class UpdateUserView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(updateBtn)
                         .addGap(20, 20, 20)
-                        .addComponent(selectBtn))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(selectBtn)
+                            .addComponent(succesfulLabel)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 33, Short.MAX_VALUE)))
@@ -198,6 +210,7 @@ public class UpdateUserView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JPasswordField passwordField;
     public javax.swing.JButton selectBtn;
+    public javax.swing.JLabel succesfulLabel;
     public javax.swing.JButton updateBtn;
     public javax.swing.JTextField usernameField;
     public javax.swing.JList usersList;

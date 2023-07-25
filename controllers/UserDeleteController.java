@@ -4,6 +4,7 @@ import com.metaphorce.inventorymanager.model.User;
 import com.metaphorce.inventorymanager.service.user.UserServiceImpl;
 import com.metaphorce.inventorymanager.views.DeleteUserView;
 import com.metaphorce.inventorymanager.views.LogInView;
+import com.metaphorce.inventorymanager.views.UserManagementView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -44,10 +45,10 @@ public class UserDeleteController implements ActionListener{
             }
         }
         if(e.getSource() == this.deleteUserView.backBtn){
-            LogInView logInView = new LogInView();
-            LogInController logInController = new LogInController(this.userService, logInView);
+            UserManagementView userManagementView = new UserManagementView();
+            UserManagementController userController = new UserManagementController(this.userService, userManagementView);
             this.deleteUserView.dispose();
-            logInView.setVisible(true);
+            userManagementView.setVisible(true);
         }
     }
     

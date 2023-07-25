@@ -27,9 +27,14 @@ public class InventoryServiceImpl implements InventoryService{
     }
 
     @Override
-    public void substractQuantity(String ingredientName, int quantity) {
-         this.ingredientRepository.addIngredient(ingredientName, quantity);
-        System.out.println("Ingredient reduced: " + quantity + " elements");
+    public void substractQuantity(String ingredientName, int quantity) throws Exception{
+        try{
+            this.ingredientRepository.substractIngredient(ingredientName, quantity);
+            System.out.println("Ingredient reduced: " + quantity + " elements");
+        }catch(Exception e){
+            throw e;
+        }
+        
     }
 
     @Override

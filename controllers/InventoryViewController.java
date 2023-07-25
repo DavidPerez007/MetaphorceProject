@@ -36,11 +36,22 @@ public class InventoryViewController implements ActionListener{
             Ingredient ingredient = this.inventoryService.getIngredient((String)this.inventoryView.ingredientComboBox.getSelectedItem());
             Integer quantity = (Integer)this.inventoryView.quantitySpinner.getValue();
             this.inventoryService.addQuantity(ingredient.getIngredientName(), quantity);
+            this.inventoryView.alertLabel.setText("Requested succesfully");
+            this.inventoryView.alertLabel.setVisible(true);
         }
         if(e.getSource() == this.inventoryView.sellBtn){
             Ingredient ingredient = this.inventoryService.getIngredient((String)this.inventoryView.ingredientComboBox.getSelectedItem());
             Integer quantity = (Integer)this.inventoryView.quantitySpinner.getValue();
-            this.inventoryService.substractQuantity(ingredient.getIngredientName(), quantity);
+            try{
+                this.inventoryService.substractQuantity(ingredient.getIngredientName(), quantity);
+                this.inventoryView.alertLabel.setText("Sold succesfully");
+                this.inventoryView.alertLabel.setVisible(true);
+            }catch(Exception ex){
+                this.inventoryView.quantitySpinner.setValue(ingredient.getIngredientQuantity());
+                this.inventoryView.alertLabel.setText("Not enough to sell");
+                this.inventoryView.alertLabel.setVisible(true);
+            }
+            
         }
         if(e.getSource() == this.inventoryView.cancelBtn){
             this.inventoryView.ingredientComboBox.setSelectedItem(null);
@@ -59,6 +70,10 @@ public class InventoryViewController implements ActionListener{
             reportGen.generateReport();
             
         }
+        if(e.getSource() == this.inventoryView.doneBtn){
+            this.inventoryView.alertLabel.setVisible(false);
+        }
+        
         if(e.getSource() == this.inventoryView.backBtn){
             UserServiceImpl userService = new UserServiceImpl();
             LogInView logInView = new LogInView();
@@ -83,8 +98,6 @@ public class InventoryViewController implements ActionListener{
             tableModel.addRow(rowData);
         }
         
-        
-        
         this.inventoryView.ingredientTable.setModel(tableModel);
         this.inventoryView.ingredientComboBox.setModel(comboBoxModel);
         this.inventoryView.cancelBtn.addActionListener(this);
@@ -94,6 +107,7 @@ public class InventoryViewController implements ActionListener{
         this.inventoryView.backBtn.addActionListener(this);
         this.inventoryView.genReportBtn.addActionListener(this);
         this.inventoryView.manageUsersBtn.setVisible(false);
+        this.inventoryView.alertLabel.setVisible(false);
         this.inventoryView.setLocationRelativeTo(null);
         if(this.user.isAdmin() == true){
             this.inventoryView.manageUsersBtn.addActionListener(this);

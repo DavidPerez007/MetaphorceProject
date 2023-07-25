@@ -40,7 +40,6 @@ public class InventoryRepositoryImpl implements InventoryRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // Cerrar la conexión y liberar los recursos
             try {
                 if (resultSet != null) {
                     resultSet.close();
@@ -82,24 +81,29 @@ public class InventoryRepositoryImpl implements InventoryRepository {
     }
 
     @Override
-    public void substractIngredient(String ingredientName, int quantity) {
+    public void substractIngredient(String ingredientName, int quantity) throws Exception{
         String query = "UPDATE ingredients SET quantity = ? WHERE ingredient = ?";
         Ingredient ingr = this.getIngredientByName(ingredientName);
-        try (Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword); PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(2, ingredientName);
-            statement.setInt(1, ingr.getIngredientQuantity() - quantity);
+        if (ingr.getIngredientQuantity() >= quantity) {
+            try (Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword); PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(2, ingredientName);
+                statement.setInt(1, ingr.getIngredientQuantity() - quantity);
 
-            int rowsAffected = statement.executeUpdate();
+                int rowsAffected = statement.executeUpdate();
 
-            if (rowsAffected == 1) {
-                System.out.println("Ingredient saved successfully.");
-            } else {
-                System.out.println("Failed to save ingredient.");
+                if (rowsAffected == 1) {
+                    System.out.println("Ingredient sold successfully.");
+                } else {
+                    System.out.println("Failed to sell ingredient.");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }else{
+            throw new Exception("Error: insuficient ingredients");
         }
+
     }
 
     @Override

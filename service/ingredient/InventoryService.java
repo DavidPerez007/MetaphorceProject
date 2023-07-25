@@ -7,6 +7,6 @@ public interface InventoryService {
     public void createNewIngredient(String ingredient, int quantity);
     public Ingredient getIngredient(String ingredient);
     public void addQuantity(String ingredientName, int quantity);
-    public void substractQuantity(String ingredientName, int quantity);
+    public void substractQuantity(String ingredientName, int quantity) throws Exception;
     public ArrayList<Ingredient> getAllIngredients();
 }

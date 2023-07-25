@@ -35,11 +35,13 @@ public class LogInView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
         logInBtn = new javax.swing.JButton();
+        alertLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setFocusCycleRoot(true);
 
+        welcomeLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         welcomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         welcomeLabel.setText("Welcome to Gorditas S.A");
         welcomeLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -61,6 +63,10 @@ public class LogInView extends javax.swing.JFrame {
             }
         });
 
+        alertLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        alertLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        alertLabel.setText("One or more credentials are incorrect");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -74,10 +80,18 @@ public class LogInView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(welcomeLabel)
                         .addComponent(usernameField)
                         .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
                 .addGap(14, 14, 14))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(94, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(alertLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(81, 81, 81))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(welcomeLabel)
+                        .addGap(103, 103, 103))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +107,9 @@ public class LogInView extends javax.swing.JFrame {
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(logInBtn)
-                .addGap(0, 74, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(alertLabel)
+                .addGap(0, 36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -160,6 +176,7 @@ public class LogInView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel alertLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

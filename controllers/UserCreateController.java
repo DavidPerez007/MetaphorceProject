@@ -5,6 +5,7 @@ import com.metaphorce.inventorymanager.views.CreateUserView;
 import com.metaphorce.inventorymanager.views.UpdateUserView;
 import com.metaphorce.inventorymanager.model.User;
 import com.metaphorce.inventorymanager.views.LogInView;
+import com.metaphorce.inventorymanager.views.UserManagementView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
@@ -35,10 +36,10 @@ public class UserCreateController implements ActionListener{
             }
         }
         if(e.getSource() == this.createUserView.backBtn){
-            LogInView logInView = new LogInView();
-            LogInController logInController = new LogInController(this.userService, logInView);
+            UserManagementView userManagementView = new UserManagementView();
+            UserManagementController userController = new UserManagementController(this.userService, userManagementView);
+            userManagementView.setVisible(true);
             this.createUserView.dispose();
-            logInView.setVisible(true);
         }
     }
     

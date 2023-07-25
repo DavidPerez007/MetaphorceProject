@@ -35,6 +35,8 @@ public class LogInController implements ActionListener{
                 InventoryViewController inventoryViewController = new InventoryViewController(inventoryService, mainView, user);
                 this.logInView.dispose();
                 mainView.setVisible(true);
+            }else{
+                this.logInView.alertLabel.setVisible(true);
             }
         }
         
@@ -42,6 +44,7 @@ public class LogInController implements ActionListener{
     
     public void initView(){
         this.logInView.logInBtn.addActionListener(this);
+        this.logInView.alertLabel.setVisible(false);
         this.logInView.setLocationRelativeTo(null);
     }
 }

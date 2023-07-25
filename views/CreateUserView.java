@@ -50,10 +50,12 @@ public class CreateUserView extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Create user");
 
         createBtn.setText("Create user");
 
+        successLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         successLabel.setText("User created succesfully");
 
         backBtn.setText("Back");

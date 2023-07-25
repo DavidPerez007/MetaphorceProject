@@ -23,16 +23,19 @@ public class UserManagementController implements ActionListener{
         if(e.getSource() == this.crudView.createBtn){
             CreateUserView createView = new CreateUserView();
             UserCreateController createController = new UserCreateController(userService, createView);
+            this.crudView.dispose();
             createView.setVisible(true);
         }
         if(e.getSource() ==  this.crudView.updateBtn){
             UpdateUserView updateView = new UpdateUserView();
             UserUpdateController updateController = new UserUpdateController(userService, updateView);
+            this.crudView.dispose();
             updateView.setVisible(true);
         }
         if(e.getSource() ==  this.crudView.deleteBtn){
             DeleteUserView deleteView = new DeleteUserView();
             UserDeleteController deleteController = new UserDeleteController(userService, deleteView);
+            this.crudView.dispose();
             deleteView.setVisible(true);
         }
         if(e.getSource() == this.crudView.backBtn){
