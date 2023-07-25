@@ -8,5 +8,4 @@ public interface UserService {
     public User deleteUser(int id);
     public User searchUserByID(int id);
     public ArrayList<User> getAllUsers();
-    public User authUser(String name, String password);
 }

@@ -35,14 +35,11 @@ public class UserServiceImpl implements UserService{
         return foundUser;
     }
 
-    @Override
-    public User authUser(String name, String password) {
+    
+
+    public User searchUserByName(String name) {
         User user = userRepository.getUserByName(name);
         return user;
-    }
-
-    public User searchUserByName(String selectedValue) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

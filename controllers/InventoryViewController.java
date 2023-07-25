@@ -1,11 +1,14 @@
 package com.metaphorce.inventorymanager.controllers;
 
 import com.metaphorce.inventorymanager.model.Ingredient;
+import com.metaphorce.inventorymanager.model.User;
 import com.metaphorce.inventorymanager.service.ingredient.InventoryServiceImpl;
+import com.metaphorce.inventorymanager.service.report.ReportGenerator;
 import com.metaphorce.inventorymanager.service.user.UserService;
 import com.metaphorce.inventorymanager.service.user.UserServiceImpl;
 import com.metaphorce.inventorymanager.views.InventoryView;
 import com.metaphorce.inventorymanager.views.LogInView;
+import com.metaphorce.inventorymanager.views.UserManagementView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -15,13 +18,15 @@ import javax.swing.table.DefaultTableModel;
 public class InventoryViewController implements ActionListener{
     private InventoryView inventoryView;
     private InventoryServiceImpl inventoryService;
+    private User user;
     private DefaultComboBoxModel comboBoxModel;
     private ArrayList<Ingredient> ingredientList = new ArrayList();
     private DefaultTableModel tableModel;
     
-    public InventoryViewController(InventoryServiceImpl inventoryService, InventoryView inventoryView){
+    public InventoryViewController(InventoryServiceImpl inventoryService, InventoryView inventoryView, User user){
         this.inventoryView = inventoryView;
         this.inventoryService = inventoryService;
+        this.user = user;
         initView();
     }
     
@@ -40,6 +45,19 @@ public class InventoryViewController implements ActionListener{
         if(e.getSource() == this.inventoryView.cancelBtn){
             this.inventoryView.ingredientComboBox.setSelectedItem(null);
             this.inventoryView.quantitySpinner.setValue(0);
+        }
+        if(e.getSource() == this.inventoryView.manageUsersBtn){
+            UserServiceImpl userService = new UserServiceImpl();
+            UserManagementView crudView = new UserManagementView();
+            UserManagementController crudController = new UserManagementController(userService, crudView);
+            this.inventoryView.dispose();
+            crudView.setVisible(true);
+        }
+        if(e.getSource() == this.inventoryView.genReportBtn){
+            InventoryServiceImpl inventoryService = new InventoryServiceImpl();
+            ReportGenerator reportGen = new ReportGenerator(inventoryService);
+            reportGen.generateReport();
+            
         }
         if(e.getSource() == this.inventoryView.backBtn){
             UserServiceImpl userService = new UserServiceImpl();
@@ -64,6 +82,9 @@ public class InventoryViewController implements ActionListener{
             Object[] rowData = {ingredient.getIngredientName(), ingredient.getIngredientQuantity()};
             tableModel.addRow(rowData);
         }
+        
+        
+        
         this.inventoryView.ingredientTable.setModel(tableModel);
         this.inventoryView.ingredientComboBox.setModel(comboBoxModel);
         this.inventoryView.cancelBtn.addActionListener(this);
@@ -71,7 +92,13 @@ public class InventoryViewController implements ActionListener{
         this.inventoryView.requestBtn.addActionListener(this);
         this.inventoryView.sellBtn.addActionListener(this);
         this.inventoryView.backBtn.addActionListener(this);
+        this.inventoryView.genReportBtn.addActionListener(this);
+        this.inventoryView.manageUsersBtn.setVisible(false);
         this.inventoryView.setLocationRelativeTo(null);
+        if(this.user.isAdmin() == true){
+            this.inventoryView.manageUsersBtn.addActionListener(this);
+            this.inventoryView.manageUsersBtn.setVisible(true);
+        }
     }
 
     

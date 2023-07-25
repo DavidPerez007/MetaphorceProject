@@ -11,7 +11,5 @@ public class InventoryManager {
         UserServiceImpl userService = new UserServiceImpl();
         LogInController controller = new LogInController(userService, logInView);
         logInView.setVisible(true);
-        
-        
     }
 }

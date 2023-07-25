@@ -19,7 +19,7 @@ public class Authenticator {
    public boolean authenticate(String name, String password){
        boolean isAuthenticated = false;
        try{
-           User user = userService.authUser(name, password);
+           User user = userService.searchUserByName(name);
            if(user.getPassword().equals(password)) isAuthenticated = true;
            else System.out.println("Error: Password not correct");
        }catch(Exception e){
