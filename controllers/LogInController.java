@@ -1,6 +1,7 @@
 package com.metaphorce.inventorymanager.controllers;
 
 import com.metaphorce.inventorymanager.service.ingredient.InventoryServiceImpl;
+import com.metaphorce.inventorymanager.service.report.ReportGenerator;
 import com.metaphorce.inventorymanager.service.security.Authenticator;
 import java.awt.event.ActionListener;
 import com.metaphorce.inventorymanager.service.user.UserServiceImpl;
@@ -39,11 +40,18 @@ public class LogInController implements ActionListener{
             this.logInView.dispose();
             crudView.setVisible(true);
         }
+        if(click.getSource() == this.logInView.genReportBtn){
+            InventoryServiceImpl inventoryService = new InventoryServiceImpl();
+            ReportGenerator reportGen = new ReportGenerator(inventoryService);
+            reportGen.generateReport();
+            
+        }
     }
     
     public void initView(){
         this.logInView.manageUsersBtn.addActionListener(this);
         this.logInView.logInBtn.addActionListener(this);
+        this.logInView.genReportBtn.addActionListener(this);
         this.logInView.setLocationRelativeTo(null);
     }
 }
