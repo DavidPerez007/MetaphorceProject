@@ -37,6 +37,7 @@ public class DeleteUserView extends javax.swing.JFrame {
         userToDeleteLabel = new javax.swing.JLabel();
         succesfulLabel = new javax.swing.JLabel();
         errorLabel = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +62,8 @@ public class DeleteUserView extends javax.swing.JFrame {
         succesfulLabel.setText("User deleted succesfully");
 
         errorLabel.setText("Select a user to delete first");
+
+        backBtn.setText("Back");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,7 +99,9 @@ public class DeleteUserView extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(selectUserBtn))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
+                        .addContainerGap()
+                        .addComponent(backBtn)
+                        .addGap(103, 103, 103)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
@@ -109,7 +114,9 @@ public class DeleteUserView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(5, 5, 5)
+                        .addComponent(backBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -186,6 +193,7 @@ public class DeleteUserView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton backBtn;
     public javax.swing.JButton deleteUserBtn;
     public javax.swing.JLabel errorLabel;
     private javax.swing.JLabel jLabel1;

@@ -2,6 +2,7 @@ package com.metaphorce.inventorymanager.controllers;
 
 import com.metaphorce.inventorymanager.model.User;
 import com.metaphorce.inventorymanager.service.user.UserServiceImpl;
+import com.metaphorce.inventorymanager.views.LogInView;
 import com.metaphorce.inventorymanager.views.UpdateUserView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,6 +44,12 @@ public class UserUpdateController implements ActionListener {
                 this.updateUserView.errorLabel.setVisible(true);
             }
         }
+        if(e.getSource() == this.updateUserView.backBtn){
+            LogInView logInView = new LogInView();
+            LogInController logInController = new LogInController(this.userService, logInView);
+            this.updateUserView.setVisible(false);
+            logInView.dispose();
+        }
     }
 
     public void initUpdateView() {
@@ -55,6 +62,8 @@ public class UserUpdateController implements ActionListener {
         this.updateUserView.usersList.setModel(usersListModel);
         this.updateUserView.updateBtn.addActionListener(this);
         this.updateUserView.selectBtn.addActionListener(this);
+        this.updateUserView.backBtn.addActionListener(this);
         this.updateUserView.errorLabel.setVisible(false);
+        this.updateUserView.setLocationRelativeTo(null);
     }
 }

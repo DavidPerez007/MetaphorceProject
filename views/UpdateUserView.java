@@ -38,6 +38,7 @@ public class UpdateUserView extends javax.swing.JFrame {
         updateBtn = new javax.swing.JButton();
         selectBtn = new javax.swing.JButton();
         errorLabel = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +56,8 @@ public class UpdateUserView extends javax.swing.JFrame {
 
         errorLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         errorLabel.setText("Please select a user to modify first");
+
+        backBtn.setText("Back");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -77,7 +80,8 @@ public class UpdateUserView extends javax.swing.JFrame {
                                 .addComponent(updateBtn)
                                 .addGap(69, 69, 69))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
+                        .addComponent(backBtn)
+                        .addGap(88, 88, 88)
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -97,7 +101,9 @@ public class UpdateUserView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(backBtn))
                 .addGap(18, 18, 18)
                 .addComponent(errorLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -117,7 +123,7 @@ public class UpdateUserView extends javax.swing.JFrame {
                         .addComponent(selectBtn))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 40, Short.MAX_VALUE)))
+                        .addGap(0, 33, Short.MAX_VALUE)))
                 .addGap(18, 18, 18))
         );
 
@@ -177,6 +183,7 @@ public class UpdateUserView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton backBtn;
     public javax.swing.JLabel errorLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

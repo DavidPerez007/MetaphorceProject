@@ -16,8 +16,7 @@ public class LogInController implements ActionListener{
     public LogInController(UserServiceImpl userService, LogInView logInView){
         this.userService = userService;
         this.logInView = logInView;
-        this.logInView.manageUsersBtn.addActionListener(this);
-        this.logInView.logInBtn.addActionListener(this);
+        initView();
     }
     
     @Override
@@ -37,7 +36,14 @@ public class LogInController implements ActionListener{
         if(click.getSource() == this.logInView.manageUsersBtn){
             UserManagementView crudView = new UserManagementView();
             UserManagementController crudController = new UserManagementController(userService, crudView);
+            this.logInView.dispose();
             crudView.setVisible(true);
         }
+    }
+    
+    public void initView(){
+        this.logInView.manageUsersBtn.addActionListener(this);
+        this.logInView.logInBtn.addActionListener(this);
+        this.logInView.setLocationRelativeTo(null);
     }
 }

@@ -3,6 +3,7 @@ package com.metaphorce.inventorymanager.controllers;
 import com.metaphorce.inventorymanager.service.user.UserServiceImpl;
 import com.metaphorce.inventorymanager.views.CreateUserView;
 import com.metaphorce.inventorymanager.views.DeleteUserView;
+import com.metaphorce.inventorymanager.views.LogInView;
 import com.metaphorce.inventorymanager.views.UpdateUserView;
 import com.metaphorce.inventorymanager.views.UserManagementView;
 import java.awt.event.ActionEvent;
@@ -14,9 +15,7 @@ public class UserManagementController implements ActionListener{
     UserManagementController(UserServiceImpl userService, UserManagementView crudView) {
         this.userService = userService;
         this.crudView = crudView;
-        this.crudView.createBtn.addActionListener(this);
-        this.crudView.deleteBtn.addActionListener(this);
-        this.crudView.updateBtn.addActionListener(this);
+        initView();
     }
 
     @Override
@@ -36,6 +35,21 @@ public class UserManagementController implements ActionListener{
             UserDeleteController deleteController = new UserDeleteController(userService, deleteView);
             deleteView.setVisible(true);
         }
+        if(e.getSource() == this.crudView.backBtn){
+            LogInView logInView = new LogInView();
+            LogInController logInController = new LogInController(this.userService, logInView);
+            this.crudView.dispose();
+            logInView.setVisible(true);
+
+        }
+    }
+    
+    public void initView(){
+        this.crudView.setLocationRelativeTo(null);
+        this.crudView.createBtn.addActionListener(this);
+        this.crudView.deleteBtn.addActionListener(this);
+        this.crudView.updateBtn.addActionListener(this);
+        this.crudView.backBtn.addActionListener(this);
     }
     
 }

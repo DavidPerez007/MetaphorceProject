@@ -3,6 +3,7 @@ package com.metaphorce.inventorymanager.controllers;
 import com.metaphorce.inventorymanager.model.User;
 import com.metaphorce.inventorymanager.service.user.UserServiceImpl;
 import com.metaphorce.inventorymanager.views.DeleteUserView;
+import com.metaphorce.inventorymanager.views.LogInView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -42,6 +43,12 @@ public class UserDeleteController implements ActionListener{
                 this.deleteUserView.errorLabel.setVisible(true);
             }
         }
+        if(e.getSource() == this.deleteUserView.backBtn){
+            LogInView logInView = new LogInView();
+            LogInController logInController = new LogInController(this.userService, logInView);
+            this.deleteUserView.dispose();
+            logInView.setVisible(true);
+        }
     }
     
     public void initDeleteView() {
@@ -54,9 +61,11 @@ public class UserDeleteController implements ActionListener{
         this.deleteUserView.usersList.setModel(usersListModel);
         this.deleteUserView.deleteUserBtn.addActionListener(this);
         this.deleteUserView.selectUserBtn.addActionListener(this);
+        this.deleteUserView.backBtn.addActionListener(this);
         this.deleteUserView.succesfulLabel.setVisible(false);
         this.deleteUserView.warningLabel.setVisible(false);
         this.deleteUserView.errorLabel.setVisible(false);
+        this.deleteUserView.setLocationRelativeTo(null);
     }
     
     
