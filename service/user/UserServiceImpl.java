@@ -8,16 +8,16 @@ public class UserServiceImpl implements UserService{
     
     
     @Override
-    public User createUser(String name, String password) {
-        User user = new User(name, password);
+    public User createUser(String name, String password, boolean isAdmin) {
+        User user = new User(name, password, isAdmin);
         userRepository.saveUser(user);
         System.out.println("User saved");
         return user;
     }
 
     @Override
-    public User updateUser(int id, String name, String password) {
-        User updatedUser = new User(name, password);
+    public User updateUser(int id, String name, String password, boolean isAdmin) {
+        User updatedUser = new User(name, password, isAdmin);
         userRepository.updateUser(id, updatedUser);
         return updatedUser;
     }

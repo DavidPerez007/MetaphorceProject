@@ -35,8 +35,8 @@ public class UserRepositoryImpl implements UserRepository {
             if (resultSet.next()) {
                 String name = resultSet.getString("name");
                 String password = resultSet.getString("password");
-
-                user = new User(name, password);
+                boolean isAdmin = resultSet.getBoolean("is_admin");
+                user = new User(name, password, isAdmin);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -78,8 +78,9 @@ public class UserRepositoryImpl implements UserRepository {
             if (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String password = resultSet.getString("password");
+                boolean isAdmin = resultSet.getBoolean("is_admin");
 
-                user = new User(name, password);
+                user = new User(name, password, isAdmin);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -117,7 +118,8 @@ public class UserRepositoryImpl implements UserRepository {
                 int id = result.getInt("id");
                 String name = result.getString("name");
                 String password = result.getString("password");
-                User user = new User(id, name, password);
+                boolean isAdmin = result.getBoolean("is_admin");
+                User user = new User(id, name, password, isAdmin);
                 users.add(user);
         }
 
@@ -133,10 +135,12 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User saveUser(User user) {
-        String query = "INSERT INTO users (name, password) VALUES (?, ?)";
+        String query = "INSERT INTO users (name, password, is_admin) VALUES (?, ?, ?)";
         try (Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword); PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, user.getName());
             statement.setString(2, user.getPassword());
+            statement.setBoolean(3, user.isAdmin());
+            
 
             int rowsAffected = statement.executeUpdate();
 

@@ -38,7 +38,8 @@ public class UserUpdateController implements ActionListener {
             if (selectedUser != null) {
                 String newName = this.updateUserView.usernameField.getText();
                 String newPassword = this.updateUserView.passwordField.getText();
-                userService.updateUser(selectedUser.getId(), newName, newPassword);
+                boolean isAdmin = this.updateUserView.isAdminCheckbox.isSelected();
+                userService.updateUser(selectedUser.getId(), newName, newPassword, isAdmin);
                 System.out.println("User updated successfully");
             } else {
                 this.updateUserView.errorLabel.setVisible(true);

@@ -26,8 +26,9 @@ public class UserCreateController implements ActionListener{
         if(e.getSource() == this.createUserView.createBtn){
             String username = this.createUserView.usernameField.getText();
             String password = this.createUserView.passwordField.getText();
+            boolean isAdmin = this.createUserView.isAdminCheckbox.isSelected();
             try{
-                userService.createUser(username, password);
+                userService.createUser(username, password, isAdmin);
                 this.createUserView.successLabel.setVisible(true);
             }catch(Exception ex){
                 ex.printStackTrace();

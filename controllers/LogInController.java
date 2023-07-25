@@ -31,6 +31,7 @@ public class LogInController implements ActionListener{
                 InventoryServiceImpl inventoryService = new InventoryServiceImpl();
                 InventoryView mainView = new InventoryView();
                 InventoryViewController inventoryViewController = new InventoryViewController(inventoryService, mainView);
+                this.logInView.dispose();
                 mainView.setVisible(true);
             }
         }
