@@ -1,7 +1,7 @@
 package com.metaphorce.inventorymanager.service.report;
 
 import com.metaphorce.inventorymanager.model.Ingredient;
-import com.metaphorce.inventorymanager.service.ingredient.InventoryServiceImpl;
+import com.metaphorce.inventorymanager.service.inventory.InventoryServiceImpl;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -41,10 +41,5 @@ public class ReportGenerator {
     public ArrayList getData(){
         ArrayList data = this.inventoryService.getAllIngredients();
         return data;
-    }
-    public static void main(String[] args){
-        InventoryServiceImpl inventoryService = new InventoryServiceImpl();
-        ReportGenerator a = new ReportGenerator(inventoryService);
-        a.generateReport();               
     }
 }

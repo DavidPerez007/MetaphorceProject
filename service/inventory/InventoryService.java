@@ -1,4 +1,4 @@
-package com.metaphorce.inventorymanager.service.ingredient;
+package com.metaphorce.inventorymanager.service.inventory;
 
 import com.metaphorce.inventorymanager.model.Ingredient;
 import java.util.ArrayList;

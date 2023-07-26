@@ -1,7 +1,7 @@
 package com.metaphorce.inventorymanager.controllers;
 
 import com.metaphorce.inventorymanager.model.User;
-import com.metaphorce.inventorymanager.service.ingredient.InventoryServiceImpl;
+import com.metaphorce.inventorymanager.service.inventory.InventoryServiceImpl;
 import com.metaphorce.inventorymanager.service.report.ReportGenerator;
 import com.metaphorce.inventorymanager.service.security.Authenticator;
 import java.awt.event.ActionListener;

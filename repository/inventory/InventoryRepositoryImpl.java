@@ -1,7 +1,6 @@
-package com.metaphorce.inventorymanager.repository.ingredient;
+package com.metaphorce.inventorymanager.repository.inventory;
 
 import com.metaphorce.inventorymanager.model.Ingredient;
-import com.metaphorce.inventorymanager.model.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

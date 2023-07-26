@@ -2,7 +2,7 @@ package com.metaphorce.inventorymanager.controllers;
 
 import com.metaphorce.inventorymanager.model.Ingredient;
 import com.metaphorce.inventorymanager.model.User;
-import com.metaphorce.inventorymanager.service.ingredient.InventoryServiceImpl;
+import com.metaphorce.inventorymanager.service.inventory.InventoryServiceImpl;
 import com.metaphorce.inventorymanager.service.report.ReportGenerator;
 import com.metaphorce.inventorymanager.service.user.UserService;
 import com.metaphorce.inventorymanager.service.user.UserServiceImpl;
