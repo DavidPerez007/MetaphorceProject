@@ -15,12 +15,22 @@ public class LogInController implements ActionListener{
     private UserServiceImpl userService;
     private LogInView logInView;
     
+    /**
+     * Creates a new LogInController with the given parameters.
+     * 
+     * @param userService
+     * @param logInView
+     */
     public LogInController(UserServiceImpl userService, LogInView logInView){
         this.userService = userService;
         this.logInView = logInView;
         initView();
     }
     
+    /**
+     * Handles user actions performed on the inventory view's buttons and components.
+     * @param click The ActionEvent triggered by user interaction.
+     */
     @Override
     public void actionPerformed(ActionEvent click){
         if(click.getSource() == this.logInView.logInBtn){
@@ -42,6 +52,9 @@ public class LogInController implements ActionListener{
         
     }
     
+    /**
+     * Initializes the view and adds action listeners to its components.
+     */
     public void initView(){
         this.logInView.logInBtn.addActionListener(this);
         this.logInView.alertLabel.setVisible(false);

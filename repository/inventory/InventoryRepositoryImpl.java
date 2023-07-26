@@ -14,6 +14,13 @@ public class InventoryRepositoryImpl implements InventoryRepository {
     private final String dbUser = "postgres";
     private final String dbPassword = "admin";
 
+    /**
+     * Retrieves an ingredient from the database by its name.
+     *
+     * @param name The name of the ingredient to retrieve.
+     * @return The Ingredient object associated with the given name, or null if not
+     *         found.
+     */
     @Override
     public Ingredient getIngredientByName(String name) {
         Connection connection = null;
@@ -57,6 +64,11 @@ public class InventoryRepositoryImpl implements InventoryRepository {
         return ingredient;
     }
 
+    /**
+     * Updates an ingredient in the database.
+     *
+     * @param ingredientName The ingredient to update.
+     */
     @Override
     public void addIngredient(String ingredientName, int quantity) {
         String query = "UPDATE ingredients SET quantity = ? WHERE ingredient = ?";
@@ -79,6 +91,12 @@ public class InventoryRepositoryImpl implements InventoryRepository {
 
     }
 
+    /**
+     * Deletes an ingredient from the database.
+     *
+     * @param ingredientName The ingredient to delete.
+     * @param quantity the amount of ingredient unities to substract
+     */
     @Override
     public void substractIngredient(String ingredientName, int quantity) throws Exception{
         String query = "UPDATE ingredients SET quantity = ? WHERE ingredient = ?";
@@ -105,6 +123,11 @@ public class InventoryRepositoryImpl implements InventoryRepository {
 
     }
 
+    /**
+     * Creates a new ingredient in the database.
+     *
+     * @param ingredient The ingredient to create.
+     */
     @Override
     public void createIngredient(Ingredient ingredient) {
         String query = "INSERT INTO ingredients (ingredient, quantity) VALUES (?, ?)";
@@ -125,6 +148,11 @@ public class InventoryRepositoryImpl implements InventoryRepository {
         }
     }
 
+    /**
+     * Retrieves all ingredients from the database.
+     *
+     * @return An ArrayList of all ingredients in the database.
+     */
     public ArrayList getAllIngredients() {
         String query = "SELECT * FROM ingredients";
         ResultSet result = null;

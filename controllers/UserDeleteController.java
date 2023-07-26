@@ -10,20 +10,31 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
-public class UserDeleteController implements ActionListener{
+public class UserDeleteController implements ActionListener {
+
     private UserServiceImpl userService;
     private DeleteUserView deleteUserView;
     private User selectedUser;
     private DefaultListModel<String> usersListModel;
     private ArrayList<User> usersList;
-    
+
+    /**
+     * Creates a new UserDeleteController with the given parameters.
+     *
+     * @param userService
+     * @param deleteUserView
+     */
     public UserDeleteController(UserServiceImpl userService, DeleteUserView deleteUserView) {
         this.userService = userService;
         this.deleteUserView = deleteUserView;
         initDeleteView();
     }
-    
-   
+
+    /**
+     * Handles user actions performed on the inventory view's buttons
+     *
+     * @param e The ActionEvent triggered by user interaction.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.deleteUserView.selectUserBtn) {
@@ -44,14 +55,17 @@ public class UserDeleteController implements ActionListener{
                 this.deleteUserView.errorLabel.setVisible(true);
             }
         }
-        if(e.getSource() == this.deleteUserView.backBtn){
+        if (e.getSource() == this.deleteUserView.backBtn) {
             UserManagementView userManagementView = new UserManagementView();
             UserManagementController userController = new UserManagementController(this.userService, userManagementView);
             this.deleteUserView.dispose();
             userManagementView.setVisible(true);
         }
     }
-    
+
+    /**
+     * initializes the view and adds action listeners to its components.
+     */
     public void initDeleteView() {
         this.usersListModel = new DefaultListModel<>();
         this.usersList = this.userService.getAllUsers();
@@ -66,10 +80,8 @@ public class UserDeleteController implements ActionListener{
         this.deleteUserView.succesfulLabel.setVisible(false);
         this.deleteUserView.warningLabel.setVisible(false);
         this.deleteUserView.errorLabel.setVisible(false);
+        this.deleteUserView.userToDeleteLabel.setVisible(false);
         this.deleteUserView.setLocationRelativeTo(null);
     }
-    
-    
-    
 
 }

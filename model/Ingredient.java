@@ -4,6 +4,13 @@ public class Ingredient {
     private String ingredientName;
     private int quantity;
     
+     /**
+     * Creates a new Ingredient object with the provided name and quantity
+     * status.
+     *
+     * @param ingredientName     The name of the ingredient.
+     * @param quantity The quantity available on the database.
+     */
     public Ingredient(String ingredientName, int quantity){
         setIngredientName(ingredientName);
         setQuantity(quantity);

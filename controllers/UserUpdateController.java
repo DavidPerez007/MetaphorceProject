@@ -17,12 +17,23 @@ public class UserUpdateController implements ActionListener {
     private DefaultListModel<String> usersListModel;
     private ArrayList<User> usersList;
 
+     /**
+     * Creates a new UserUpdateController with the given parameters.
+     * 
+     * @param userService
+     * @param updateUserView
+     */
     public UserUpdateController(UserServiceImpl userService, UpdateUserView updateUserView) {
         this.userService = userService;
         this.updateUserView = updateUserView;
         initUpdateView();
     }
 
+    /**
+     * Handles user actions performed on the inventory view's buttons
+     * 
+     * @param e The ActionEvent triggered by user interaction.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.updateUserView.selectBtn) {
@@ -55,6 +66,9 @@ public class UserUpdateController implements ActionListener {
         }
     }
 
+    /**
+     * Initializes the update view's components and adds action listeners to the
+     */
     public void initUpdateView() {
         this.usersListModel = new DefaultListModel<>();
         this.usersList = this.userService.getAllUsers();

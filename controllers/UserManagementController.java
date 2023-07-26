@@ -12,12 +12,23 @@ import java.awt.event.ActionListener;
 public class UserManagementController implements ActionListener{
     private UserServiceImpl userService;
     private UserManagementView crudView;
+    
+    /**
+     * Creates a new UserManagementController with the given parameters.
+     * 
+     * @param userService
+     * @param crudView
+     */
     UserManagementController(UserServiceImpl userService, UserManagementView crudView) {
         this.userService = userService;
         this.crudView = crudView;
         initView();
     }
 
+    /**
+     * Handles user actions performed on the inventory view's buttons
+     * @param e The ActionEvent triggered by user interaction.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.crudView.createBtn){
@@ -47,6 +58,9 @@ public class UserManagementController implements ActionListener{
         }
     }
     
+    /**
+     * initializes the view and adds action listeners to its components.
+     */
     public void initView(){
         this.crudView.setLocationRelativeTo(null);
         this.crudView.createBtn.addActionListener(this);

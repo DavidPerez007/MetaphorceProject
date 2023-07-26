@@ -6,6 +6,12 @@ public abstract class AbstractUser {
     private String password;
     private boolean isAdmin;
     
+    /**
+     * Creates a new AbstractUser with the given parameters.
+     * @param name 
+     * @param password
+     * @param isAdmin
+     */
     public AbstractUser(String name, String password, boolean isAdmin) {
         this.setName(name);
         this.setPassword(password);
@@ -13,6 +19,13 @@ public abstract class AbstractUser {
         
     }
     
+    /**
+     * Creates a new AbstractUser with the given parameters.
+     * @param id
+     * @param name
+     * @param password
+     * @param isAdmin
+     */
     public AbstractUser(int id, String name, String password, boolean isAdmin) {
         this.id = id;
         this.setName(name);

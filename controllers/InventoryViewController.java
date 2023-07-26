@@ -23,6 +23,13 @@ public class InventoryViewController implements ActionListener{
     private ArrayList<Ingredient> ingredientList = new ArrayList();
     private DefaultTableModel tableModel;
     
+     /**
+     * Creates a new InventoryViewController with the given parameters.
+     *
+     * @param inventoryService The service for inventory-related operations.
+     * @param inventoryView    The view for inventory management GUI.
+     * @param user             The currently logged-in user.
+     */
     public InventoryViewController(InventoryServiceImpl inventoryService, InventoryView inventoryView, User user){
         this.inventoryView = inventoryView;
         this.inventoryService = inventoryService;
@@ -30,6 +37,12 @@ public class InventoryViewController implements ActionListener{
         initView();
     }
     
+    /**
+     * Handles user actions performed on the inventory view's buttons and
+     * components.
+     *
+     * @param e The ActionEvent triggered by user interaction.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.inventoryView.requestBtn){
@@ -84,6 +97,9 @@ public class InventoryViewController implements ActionListener{
     
     }
     
+    /**
+     * Initializes the inventory view's components and adds action listeners to the buttons.
+     */
     public void initView(){
         this.comboBoxModel = new DefaultComboBoxModel<>();
         this.ingredientList = this.inventoryService.getAllIngredients();

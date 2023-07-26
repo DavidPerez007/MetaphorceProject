@@ -16,6 +16,12 @@ public class UserRepositoryImpl implements UserRepository {
     private String dbUser = "postgres";
     private String dbPassword = "admin";
 
+    /**
+     * Retrieves a user from the database by their unique ID.
+     *
+     * @param id The unique ID of the user to retrieve.
+     * @return The User object associated with the given ID, or null if not found.
+     */
     @Override
     public User getUserByID(int id) {
         Connection connection = null;
@@ -59,6 +65,12 @@ public class UserRepositoryImpl implements UserRepository {
         return user;
     }
 
+     /**
+     * Retrieves a user from the database by their name.
+     *
+     * @param name The name of the user to retrieve.
+     * @return The User object associated with the given name, or null if not found.
+     */
     @Override
     public User getUserByName(String name) {
         Connection connection = null;
@@ -104,6 +116,11 @@ public class UserRepositoryImpl implements UserRepository {
         return user;
     }
 
+     /**
+     * Retrieves a list of all users from the database.
+     *
+     * @return An ArrayList containing all the User objects stored in the database.
+     */
     @Override
     public ArrayList getAllUsers() {
         String query = "SELECT * FROM users";
@@ -133,6 +150,12 @@ public class UserRepositoryImpl implements UserRepository {
         return users;
     }
 
+     /**
+     * Creates a new user in the database.
+     *
+     * @param user The user to create.
+     * @return The User object that was created.
+     */
     @Override
     public User saveUser(User user) {
         String query = "INSERT INTO users (name, password, is_admin) VALUES (?, ?, ?)";
@@ -157,6 +180,12 @@ public class UserRepositoryImpl implements UserRepository {
         return user;
     }
 
+    /**
+     * Deletes a user from the database.
+     *
+     * @param id The id of the user to delete.
+     * @return The User object that was deleted.
+     */
     @Override
     public User deleteUser(int id) {
         String query = "DELETE FROM users WHERE id = ?";
@@ -179,6 +208,12 @@ public class UserRepositoryImpl implements UserRepository {
         return userToDelete;
     }
 
+     /**
+     * Updates a user in the database.
+     * @param id the id of the user to update
+     * @param user The information of user to update.
+     * @return The User object that was updated.
+     */
     @Override
     public User updateUser(int id, User user
     ) {

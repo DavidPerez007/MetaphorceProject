@@ -15,13 +15,21 @@ public class UserCreateController implements ActionListener{
     private UserServiceImpl userService;
     private CreateUserView createUserView;
     
+    /**
+     * Creates a new UserCreateController with the given parameters.
+     * 
+     * @param userService
+     * @param createUserView
+     */
     public UserCreateController(UserServiceImpl userService, CreateUserView createUserView) {
         this.createUserView = createUserView;
         this.userService = userService;
         initCreateView();
     }
     
-   
+    /**
+     * Handles user actions performed on the inventory view's buttons
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.createUserView.createBtn){
@@ -43,6 +51,9 @@ public class UserCreateController implements ActionListener{
         }
     }
     
+    /**
+     * initializes the view and adds action listeners to its components.
+     */
     public void initCreateView(){
         this.createUserView.successLabel.setVisible(false);
         this.createUserView.createBtn.addActionListener(this);

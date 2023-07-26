@@ -12,10 +12,24 @@ public class Authenticator {
     private final long expirationTime = 20000;
     private UserServiceImpl userService= new UserServiceImpl();
 
+    /**
+     * Constructs an Authenticator with the provided UserServiceImpl instance.
+     *
+     * @param userService The UserServiceImpl instance to be used for user
+     *                    retrieval.
+     */
     public Authenticator(UserServiceImpl userService) {
         this.userService = userService;
     }
 
+    /**
+     * Verifies if the user is registered into the DB system, if so,
+     * will return a true boolean, otherwise, false.
+     *
+     * @param name The user to verify identity
+     * @param password The password of the user
+     * @return boolean that grants or denies access permission 
+     */
    public boolean authenticate(String name, String password){
        boolean isAuthenticated = false;
        try{
